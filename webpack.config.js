@@ -34,13 +34,10 @@ var config = {
         test: /\.css$/,
         loader: 'style-loader!css-loader'
       }, {
-        test: /\.png$/,
-        loader: 'url-loader?limit=100000'
-      }, {
         test: /\.scss$/,
         loaders: ['style-loader', 'css-loader', 'sass-loader']
       }, {
-        test: /\.jpg$/,
+        test: /\.png$/,
         loader: 'file-loader'
       }, {
         test: /\.(woff2|woff|ttf|eot)(\?v=[a-z0-9]\.[a-z0-9]\.[a-z0-9])?$/,

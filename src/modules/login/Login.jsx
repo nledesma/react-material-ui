@@ -17,45 +17,45 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
     textAlign: 'right',
     height: '100%',
-    color: theme.palette.text.secondary,
-  },
+    color: theme.palette.text.secondary
+  }
 })
 
 export class Login extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super()
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.clearErrors()
   }
 
-  valida() {
+  valida () {
     let render = []
     if (this.props.errorMessage) {
-      <div>some error</div>
+      render = <div>some error</div>
     }
     return render
   }
 
-  render() {
+  render () {
     const { classes } = this.props
     return (
       <div className={classes.root}>
-        <Grid style={{ height: 400, margin: 'auto', verticalAlign: 'middle' }} container spacing={24} justify="center" alignItems="center">
+        <Grid style={{ height: 400, margin: 'auto', verticalAlign: 'middle' }} container spacing={24} justify='center' alignItems='center'>
           <Grid item xs={4}>
-            <Typography variant="display1" gutterBottom>
+            <Typography variant='display1' gutterBottom>
               Login
             </Typography>
             <Paper className={classes.paper}>
-              <form className={classes.container} noValidate autoComplete="off" onSubmit={event => {
+              <form className={classes.container} noValidate autoComplete='off' onSubmit={event => {
                 event.preventDefault()
                 this.props.login(event.target.email.value, event.target.password.value)
               }}>
                 <Grid item xs={12}>
-                  <TextField id="full-width" name="email" label="Email" InputLabelProps={{ shrink: true }} placeholder="example@mail.com" fullWidth />
-                  <TextField id="password-input" label="Password" name="password" type="password" autoComplete="current-password" fullWidth margin="normal" />
-                  <Button type="submit" variant="contained" color="primary">
+                  <TextField id='full-width' name='email' label='Email' InputLabelProps={{ shrink: true }} placeholder='example@mail.com' fullWidth />
+                  <TextField id='password-input' label='Password' name='password' type='password' autoComplete='current-password' fullWidth margin='normal' />
+                  <Button type='submit' variant='contained' color='primary'>
                     Continue
                   </Button>
                 </Grid>
@@ -78,7 +78,7 @@ const mapDispatch = (dispatch) => ({
 })
 
 Login.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => {
