@@ -5,39 +5,36 @@ import { Route, withRouter, Switch } from 'react-router-dom'
 import { persistStore } from 'redux-persist'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
-
 // Imports
 import Login from '../modules/login/Login'
 import Inbox from '../modules/inbox/Inbox'
 import PrivateRoute from '../utils/PrivateRoute'
 import store from './store.js'
 
-
 export class App extends React.Component {
-
-  constructor() {
+  constructor () {
     super()
     this.state = { rehydrated: false }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     persistStore(store, {}, () => {
       this.setState({ rehydrated: true })
     })
   }
 
-  render() {
+  render () {
     if (!this.state.rehydrated) {
       return <div>Loading...</div>
     }
     return (
-      <div>
+      <React.Fragment>
         <CssBaseline />
         <Switch>
-          <Route path="/login" component={Login} />
-          <PrivateRoute exact={true} path="/" permiso={true} component={Inbox} />
+          <Route path='/login' component={Login} />
+          <PrivateRoute exact path='/' permiso component={Inbox} />
         </Switch>
-      </div>
+      </React.Fragment>
     )
   }
 }

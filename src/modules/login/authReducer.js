@@ -1,8 +1,10 @@
 import axios from 'axios'
-import { push } from 'react-router-redux'
+import {
+  push
+} from 'react-router-redux'
 
 import api from '../../config/endpoints'
-const LOGIN = 'LOGIN'
+const LOGIN_EMAIL = 'LOGIN_EMAIL'
 const LOGOUT = 'LOGOUT'
 const LOGIN_ERROR = 'LOGIN_ERROR'
 const CLEAR_ERRORS = 'CLEAR_ERRORS'
@@ -15,7 +17,8 @@ const initialState = {
 }
 
 export const loginError = err => ({
-  type: LOGIN_ERROR, err
+  type: LOGIN_ERROR,
+  err
 })
 
 export const clearErrors = () => ({
@@ -24,18 +27,25 @@ export const clearErrors = () => ({
 
 // normal action creators
 export const loginAction = data => ({
-  type: LOGIN, data
+  type: LOGIN_EMAIL,
+  data
 })
 
 export const logout = () => ({
-  type: LOGIN_EMAIL
+  type: LOGOUT
 })
 
 // thunks
 export const login = (email, password) => dispatch => {
-  axios.post(api.login, { email, password })
+  axios.post(api.login, {
+    email,
+    password
+  })
     .then(res => {
-      dispatch(loginAction({email, token: res.data.data.token}))
+      dispatch(loginAction({
+        email,
+        token: res.data.data.token
+      }))
       dispatch(push('/'))
     })
     .catch(err => {
@@ -49,22 +59,33 @@ export const logoutUser = () => dispatch => {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-  case LOGIN:
-    console.log(action)
-    return {
-      ...state,
-      email: action.data.email,
-      token: action.data.token,
-      isAuthenticated: true,
-      error: null
-    }
-  case LOGOUT:
-    return { ...state, email: null, error: null, isAuthenticated: false }
-  case LOGIN_ERROR:
-    return { ...state, error: { message: 'Wrong email or password. Try again' }, isAuthenticated: false }
-  case CLEAR_ERRORS:
-    return { ...state, error: null }
-  default:
-    return state
+    case LOGIN_EMAIL:
+      console.log(action)
+      return {
+        ...state,
+        email: action.data.email,
+        token: action.data.token,
+        isAuthenticated: true,
+        error: null
+      }
+    case LOGOUT:
+      return { ...state,
+        email: null,
+        error: null,
+        isAuthenticated: false
+      }
+    case LOGIN_ERROR:
+      return { ...state,
+        error: {
+          message: 'Wrong email or password. Try again'
+        },
+        isAuthenticated: false
+      }
+    case CLEAR_ERRORS:
+      return { ...state,
+        error: null
+      }
+    default:
+      return state
   }
 }
