@@ -4,10 +4,13 @@ import { routerReducer } from 'react-router-redux'
 
 /* Import Other Reducers */
 import authReducer from '../modules/login/authReducer'
+import inboxReducer from '../modules/inbox/inboxReducer'
 
 /* Combine & Export Reducers to Store */
 const appReducer = combineReducers({
-  authReducer
+  authReducer,
+  inboxReducer,
+  routerReducer
 })
 
 const rootReducer = (state, action) => {

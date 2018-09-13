@@ -13,9 +13,10 @@ const initialState = {
   email: null,
   error: null,
   token: null,
-  isAuthenticated: false,
+  isAuthenticated: false
 }
 
+// Action creators
 export const loginError = err => ({
   type: LOGIN_ERROR,
   err
@@ -25,7 +26,6 @@ export const clearErrors = () => ({
   type: CLEAR_ERRORS
 })
 
-// normal action creators
 export const loginAction = data => ({
   type: LOGIN_EMAIL,
   data
@@ -35,7 +35,7 @@ export const logout = () => ({
   type: LOGOUT
 })
 
-// thunks
+// Thunks
 export const login = (email, password) => dispatch => {
   axios.post(api.login, {
     email,
@@ -53,14 +53,9 @@ export const login = (email, password) => dispatch => {
     })
 }
 
-export const logoutUser = () => dispatch => {
-  dispatch(logout())
-}
-
 export default (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_EMAIL:
-      console.log(action)
       return {
         ...state,
         email: action.data.email,

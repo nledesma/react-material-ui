@@ -7,7 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 
 // Imports
 import Login from '../modules/login/Login'
-import Inbox from '../modules/inbox/Inbox'
+import Inbox from '../modules/inbox/components/Inbox'
 import PrivateRoute from '../utils/PrivateRoute'
 import store from './store.js'
 

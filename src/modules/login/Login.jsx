@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { login, clearErrors } from './authReducer'
+import { login } from './authReducer'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
@@ -24,10 +24,6 @@ const styles = theme => ({
 export class Login extends React.Component {
   constructor (props) {
     super()
-  }
-
-  componentDidMount () {
-    this.props.clearErrors()
   }
 
   valida () {
@@ -68,18 +64,17 @@ export class Login extends React.Component {
   }
 }
 
+Login.propTypes = {
+  classes: PropTypes.object.isRequired,
+  login: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string
+}
+
 const mapDispatch = (dispatch) => ({
   login: (email, password) => {
     dispatch(login(email, password))
-  },
-  clearErrors: () => {
-    dispatch(clearErrors())
   }
 })
-
-Login.propTypes = {
-  classes: PropTypes.object.isRequired
-}
 
 const mapStateToProps = (state) => {
   return {
